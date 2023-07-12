@@ -1,0 +1,19 @@
+{
+    "build": { "dockerfile": "Dockerfile" },
+    "customizations": {
+        "vscode": {
+            "extensions": ["platformio.platformio-ide"]
+        }
+    },
+    "forwardPorts": [
+		8008
+	],
+	"mounts": [
+		"source=/dev/,target=/dev/,type=bind,consistency=consistent",
+		// "source=./,target=/home/vscode/Documents/PlatformIO/Projects,type=bind,consistency=cached"
+	],
+	"runArgs": [
+		"--privileged"
+	],
+	"postAttachCommand": "sudo service udev restart"
+}
