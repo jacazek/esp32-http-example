@@ -101,11 +101,23 @@ build_flags =
     -DWIFI_PASSWORD=${sysenv.WIFI_PASSWORD}
 ```
 
-Then in the environment where you build the code, you would need to export the sensitive information to environment variables.
-```bash
-export WIFI_SSID="mywifissid"
-export WIFI_PASSWORD="mywifipassword"
-```
+Then add the environment variables to the VSCode terminal settings for the **user** so build process will pick them up.
+> **Warning**  
+> Do not add these environment variables to workspace settings.  That will get committed to source control.
+1. Click Cog in lower left -> Settings
+2. Search for env  
+    ![Alt text](images/terminal-settings.png)  
+3. Click edit in settings.json
+4. Add your environment variables
+    ```json
+    {
+        "terminal.integrated.env.linux": {
+            "WIFI_SSID": "myssid",
+            "WIFI_PASSWORD": "mypassword"
+        }
+    }
+    ```
+
 
 ## Building the code
 Click the little checkmark in the footer toolbar to build the code.
