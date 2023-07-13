@@ -3,7 +3,9 @@
 Git clone to directory of choice.
 
 ## Developing on local host
-(the faster option... for now)
+> **NOTE:**
+> the faster option... for now
+
 The following extensions can be installed in your local vscode instance to start developing outside of a devcontainer.
 
 If you want to avoid manual configuration when updates are made to settings/extensions, see [Developing in a dev container](#developing-in-dev-container)
@@ -17,7 +19,9 @@ If you want to avoid manual configuration when updates are made to settings/exte
     ```
 
 ## Developing in dev container
-(initially slower, but should be better long term... still need to sort out github credential guidance)
+> **NOTE:**
+> (initially slower, but should be better long term... still need to sort out github credential guidance)
+
 Running a devcontainer avoids manually installing and configuring the extensions necessary to develop for embedded devices.
 As extensions are added or re-configured and those changes are pushed to the main branch in github, when the main branch is fetched and the dev container started, a new container with updated extensions and configuration will be built.
 
@@ -65,7 +69,7 @@ In the context of secrets, defining the value directly in the code would be leak
 #define WIFI_SSID "mywifissid"
 
 // reference the secrets when connecting to wifi.
-WIFI.connect(WIFI_SSID, WIFI_PASSWORd);
+WIFI.connect(WIFI_SSID, WIFI_PASSWORD);
 ```
 
 To prevent leaking the sensitive information directly in code, we can provide the sensitive information as defines during build time by passing define arguments `-D` with the key and value to define. These are specified in the `platformio.ini`. For example:
