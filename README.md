@@ -92,13 +92,16 @@ WIFI.connect(WIFI_SSID, WIFI_PASSWORd);
 
 Since the `platformio.ini` is also committed to source control, there is one last change we need to make to avoid exposing sensitive information. The `platformio.ini` file should reference (environment variables)[https://docs.platformio.org/en/latest/projectconf/interpolation.html] to get the secrets.
 
+> **Info**
+> The secret must be wrapped in double quotes to successfully substitute into the code. Thus the escaped quotes around the sysenv values.
+
 ```ini
 [env:esp32doit-devkit-v1]
 platform = espressif32
 ; ... snip other configuration
 build_flags =
-    -DWIFI_SSID=${sysenv.WIFI_SSID}
-    -DWIFI_PASSWORD=${sysenv.WIFI_PASSWORD}
+    -DWIFI_SSID=\"${sysenv.WIFI_SSID}\"
+    -DWIFI_PASSWORD=\"${sysenv.WIFI_PASSWORD}\"
 ```
 
 Then add the environment variables to the VSCode terminal settings for the **user** so build process will pick them up.
