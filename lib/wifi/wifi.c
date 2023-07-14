@@ -11,6 +11,7 @@
 #define WIFI_FAIL_BIT BIT1
 
 static const char *TAG = "wifi_connect";
+esp_ip4_addr_t ip;
 
 /* FreeRTOS event group to signal when we are connected*/
 static EventGroupHandle_t s_wifi_event_group;
@@ -40,7 +41,8 @@ static void event_handler(void *arg, esp_event_base_t event_base,
     else if (event_base == IP_EVENT && event_id == IP_EVENT_STA_GOT_IP)
     {
         ip_event_got_ip_t *event = (ip_event_got_ip_t *)event_data;
-        ESP_LOGI(TAG, "got ip:" IPSTR, IP2STR(&event->ip_info.ip));
+        ip = event->ip_info.ip;
+        ESP_LOGI(TAG, "got ip:" IPSTR, IP2STR(&ip));
         s_retry_num = 0;
         xEventGroupSetBits(s_wifi_event_group, WIFI_CONNECTED_BIT);
     }
@@ -119,3 +121,6 @@ void wifi_init(void)
     }
 }
 
+esp_ip4_addr_t* wifi_get_ip() {
+    return &ip;
+}

@@ -14,7 +14,7 @@ void app_main() {
     setup();
 
     while(1) {
-        wifi_scan();
+        ESP_LOGI("main", "got ip:" IPSTR, IP2STR(wifi_get_ip()));
         vTaskDelay(1000/portTICK_PERIOD_MS);
     }
 }
