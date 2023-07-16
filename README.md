@@ -2,6 +2,8 @@
 ## Get the code
 Git clone to directory of choice.
 
+
+
 ## Developing on local host
 > **NOTE:**
 > the faster option... for now
@@ -132,6 +134,11 @@ Similar to build, just click the right facing arrow.
 
 ![Alt text](images/upload.png)
 
+If you have issues uploading the firmware to the device, there are a couple things to check.
+1. Make sure the device was properly enumerated by the OS. In Linux, you can check this by running the script found in the /scripts folder of this project.  Run `./scripts/device_enumeration.sh`.  This **may** also work in linux subsystem in windows... but you may be venturing into the land of dragons at that point.
+2. Make sure you have the right [driver installed for windows](https://docs.espressif.com/projects/esp-idf/en/v4.3-beta2/esp32s2/api-guides/dfu.html#usb-drivers-windows-only) or try setting up the [udev rules for linux](https://docs.espressif.com/projects/esp-idf/en/v4.3-beta2/esp32s2/api-guides/dfu.html#usb-drivers-windows-only). 
+3. If all else fails, message me.  It may be that we just need to add your current user to the appropriate group (e.g. `dialout`) in order to have permission to upload the firmware to the device. This gets wonky because `dialout` group is used for opensuse, but other linux distros may use a different group name and number. As for windows, you'd be better off asking me to explaining how to play candyland... with dice... yeah it makes that much sense to me. Good luck to you for windows.
+
 ## Connecting to serial output of the device
 To get any information logged on the device, you will need to connect to the serial device over usb.  After uploading the image, there is another toolbar button to connect via serial monitor. The baud rate of the monitor must match the baud rate of the device. Typically you want `115200` for baud rate. This is configured in the `platformio.ini`.
 
@@ -160,3 +167,9 @@ The `platformio.ini` file is where build configuration information is stored.  T
 3. Overrides for board configuration (change clock frequency or flash size)
 
 https://docs.platformio.org/en/latest/projectconf/sections/env/index.html
+
+## Bootstrapping a new project
+This project was designed jump right into development.  You can always fork this repo to use as a base for another project.
+
+If you want, thouhg, here is a link to platform IO documentation for starting a new project.
+https://docs.platformio.org/en/latest/integration/ide/vscode.html#quick-start
